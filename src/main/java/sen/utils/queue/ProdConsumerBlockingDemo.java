@@ -21,7 +21,9 @@ class MyResource
         boolean retValue;
         while (FLAG)
         {
+            //做线程安全的++i操作
             Data = atomicInteger.incrementAndGet() + "";
+            //往阻塞队列中每隔2秒存一个值存值
             retValue = blockingQueue.offer(Data, 2L, TimeUnit.SECONDS);
             if(retValue)
             {
@@ -39,9 +41,11 @@ class MyResource
         while (FLAG)
         {
             retValue = blockingQueue.poll(2L, TimeUnit.SECONDS);
+            //判断从阻塞队列获取到的值是否为空，如果名为空说明在2秒钟之内取不到值，结束
             if(retValue == null || retValue.equalsIgnoreCase(""))
             {
                 System.out.println(Thread.currentThread().getName() + "\t 取值等待2秒失败，所有线程结束运行。");
+                //改变FLAG的值，myProd结束循环
                 FLAG = false;
                 return;
             }
