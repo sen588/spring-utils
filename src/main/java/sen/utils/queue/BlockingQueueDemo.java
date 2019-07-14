@@ -60,7 +60,7 @@ public class BlockingQueueDemo
         System.out.println(blockingQueue.take());
 
         /*
-
+           过时不候
          */
         System.out.println("超时插入：");
         System.out.println(blockingQueue.offer("a", 2L, TimeUnit.SECONDS));
