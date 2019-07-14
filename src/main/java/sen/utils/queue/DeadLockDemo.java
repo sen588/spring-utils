@@ -38,7 +38,7 @@ public class DeadLockDemo {
     }
 }
 /*
-    死锁产生结果：
+    死锁产生结果及说明：
         D:\exploit\ideaExploit\appliance\spring-utils>jps -l
             //端口号
             13456 sen.utils.queue.DeadLockDemo
