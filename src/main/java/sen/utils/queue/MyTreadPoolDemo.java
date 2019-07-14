@@ -6,9 +6,11 @@ public class MyTreadPoolDemo {
 
     public static void main(String[] args)
     {
+        //获取cpu的核数
+        int cup = Runtime.getRuntime().availableProcessors() + 1;
         ExecutorService threadPool = new ThreadPoolExecutor(
                 2,//1、corePoolSize：线程池中的常驻核心线程数
-                5,//2、maximumPoolSize：线程池中能够容纳同时执行的最大线程数，此值必须大于等于1
+                cup,//2、maximumPoolSize：线程池中能够容纳同时执行的最大线程数，此值必须大于等于1
                 1L,//3、keepAliveTime：多余的空闲线程的存活时间当前池中线程数量超过corePoolSize时，当空闲时间达到keepAliveTime时，多余线程会被销毁直到只剩下corePoolSize个线程为止
                 TimeUnit.SECONDS,//4、unit：keepAliveTime的单位
                 new LinkedBlockingQueue<>(3),//5、workQueue：任务队列，被提交但尚未被执行的任务
