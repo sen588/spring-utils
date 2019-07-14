@@ -55,19 +55,19 @@ public class DeadLockDemo {
             "B":
                     at sen.utils.queue.HoldLockTread.run(DeadLockDemo.java:23)
 
-                    //B线程已锁的线程资源0x00000000d5fa4908
+                    //B线程尝试获取的线程资源0x00000000d5fa4908
                     - waiting to lock <0x00000000d5fa4908> (a java.lang.String)
 
-                    //B线程尝试获取的线程资源0x00000000d5fa4940
+                    //B线程已锁的线程资源0x00000000d5fa4940
                     - locked <0x00000000d5fa4940> (a java.lang.String)
                     at java.lang.Thread.run(Thread.java:748)
             "A":
                     at sen.utils.queue.HoldLockTread.run(DeadLockDemo.java:23)
 
-                    //A线程已锁的线程资源0x00000000d5fa4940
+                    //A线程尝试获取的线程资源0x00000000d5fa4940
                     - waiting to lock <0x00000000d5fa4940> (a java.lang.String)
 
-                    //A线程尝试获取的线程资源0x00000000d5fa4908
+                    //A线程已锁的线程资源0x0000000d5fa49080
                     - locked <0x00000000d5fa4908> (a java.lang.String)
                     at java.lang.Thread.run(Thread.java:748)
 
