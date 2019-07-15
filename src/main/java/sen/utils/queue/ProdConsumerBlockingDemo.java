@@ -63,7 +63,6 @@ public class ProdConsumerBlockingDemo {
 
     public static void main(String[] args)
     {
-
         MyResource myResource = new MyResource(new ArrayBlockingQueue<>(10));
         new Thread(()->
         {
