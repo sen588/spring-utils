@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /*
-将excel数据导入到数据库
+将excel数据导入到数据库的工具类
  */
 @Data
 public class ExcelImportUtil {
