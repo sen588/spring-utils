@@ -21,4 +21,15 @@ public class GC {
     3、升老年区需活过的次数
         -XX:MaxTenuringThreshold= 次数：出厂值为 15
         -XX:MaxTenuringThreshold=15
+
+     4、如何解释-Xms和-Xmx
+         -Xms：InitialHeapSize
+         -Xmx：MaxHeapSize
+
+     5、jvm调优参数,查看参数盘点家点
+        java -XX:+PrintFlagsInitial
+
+        -XX:+PrintFlagsFinal
+        带 “=” 的参数未被修
+        带 “:=”的参数被手动修改过的值
  */
