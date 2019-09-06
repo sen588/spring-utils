@@ -102,4 +102,66 @@ public class ExcelRead {
         }
         is.close();
     }
+    
+    
+    //获取excel表中的数据存放到一个二维数组中
+    private String[][] gainExcelContent() {
+        //加载文件目录下Excel的内容
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(EXCEL_PATH);
+        } catch (FileNotFoundException e) {
+            logger.error(e.getMessage());
+        }
+        Workbook workbook = null;
+        try {
+            workbook = new HSSFWorkbook(inputStream);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+        //读取数据
+        Sheet sheet = workbook.getSheetAt(0);
+        //获取行的总数
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int cellCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        String[][] array = null;
+        if(rowCount > 0) {
+            array = new String[rowCount][cellCount];
+        }
+        int conut = 0;
+        for (int rowNum = 0; rowNum < rowCount; rowNum++) {
+            Row rowData = sheet.getRow(rowNum);
+            if (rowData != null) {// 行不为空
+                for (int cellNum = 0; cellNum < cellCount; cellNum++) {
+                    Cell cell = rowData.getCell(cellNum);
+                    if (cell != null) {
+                        int cellType = cell.getCellType();
+                        switch (cellType) {
+                            //字符串类型数据
+                            case HSSFCell.CELL_TYPE_STRING :
+                                conut++;
+                                cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                                array[rowNum][cellNum] = cell.getStringCellValue();
+                                break;
+                            //日期类型数据
+                            case HSSFCell.CELL_TYPE_NUMERIC:
+                                Date date = cell.getDateCellValue();
+                                array[rowNum][cellNum] = new DateTime(date).toString("yyyy-MM-dd HH:mm:ss");
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        //将array数组中的有效数据copy到array_copy数组中
+        String[][] array_copy = new String[conut][cellCount];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if(array[i][j] != null){
+                    array_copy[i][j] = array[i][j];
+                }
+            }
+        }
+        return array_copy;
+    }
 }
